@@ -5,9 +5,6 @@ import { ApplicationStack } from "../lib/application-stack";
 
 const app = new cdk.App();
 new ApplicationStack(app, "ApplicationStack", {
-  synthesizer: new cdk.DefaultStackSynthesizer({
-    qualifier: "blogpost"
-  }),
   env: {
     region: "eu-west-1"
   }

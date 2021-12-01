@@ -254,8 +254,7 @@ Resources:
           - Action: sts:AssumeRole
             Effect: Allow
             Principal:
-              AWS:
-                Ref: AWS::AccountId
+              AWS: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-1NNX60MARZ9GA
           - Fn::If:
               - HasTrustedAccountsForLookup
               - Action: sts:AssumeRole
