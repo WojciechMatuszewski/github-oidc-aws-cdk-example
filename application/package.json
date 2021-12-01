@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy:cicd": "npm run deploy -- --require-approval never",
+    "deploy:cicd": "npm run cdk deploy -- --require-approval never",
     "bootstrap": "npm run cdk bootstrap -- --template bootstrap-template.yaml",
     "get-bootstrap-template": "npm run cdk bootstrap -- --show-template > ./bootstrap-template.yaml"
   },
