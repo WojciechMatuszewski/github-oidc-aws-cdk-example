@@ -1,0 +1,19 @@
+name: deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Deploy the application
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-ZB3SU6HC4VUA
+          aws-region: us-east-1
