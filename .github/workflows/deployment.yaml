@@ -21,7 +21,7 @@ jobs:
       - name: Assume deployer role
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-ZB3SU6HC4VUA
+          role-to-assume: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-1NNX60MARZ9GA
           aws-region: eu-west-1
       - name: Deploy the application
         working-directory: ./application
