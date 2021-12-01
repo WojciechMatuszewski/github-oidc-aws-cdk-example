@@ -25,7 +25,7 @@ export class InfrastructureStack extends cdk.Stack {
       this,
       "applicationDeployerRole",
       {
-        assumedBy: new iam.FederatedPrincipal(
+        assumedBy: new iam.WebIdentityPrincipal(
           gitHubOIDCProvider.openIdConnectProviderArn,
           {
             StringLike: {
