@@ -35,7 +35,17 @@ export class InfrastructureStack extends cdk.Stack {
             }
           }
         ),
-        inlinePolicies: {}
+        inlinePolicies: {
+          allowAssumeOnAccountB: new iam.PolicyDocument({
+            statements: [
+              new iam.PolicyStatement({
+                effect: iam.Effect.ALLOW,
+                actions: ["sts:AssumeRole"],
+                resources: ["arn:aws:iam::484156073071:role/*"]
+              })
+            ]
+          })
+        }
       }
     );
 
