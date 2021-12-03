@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-multi-account:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -16,7 +16,7 @@ jobs:
       - name: Pull repository
         uses: actions/checkout@v2
       - name: Install dependencies
-        working-directory: ./application
+        working-directory: ./multi-account/application
         run: npm install
       - name: Assume deployer role
         uses: aws-actions/configure-aws-credentials@v1
@@ -24,5 +24,8 @@ jobs:
           role-to-assume: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-1NNX60MARZ9GA
           aws-region: eu-west-1
       - name: Deploy the application
-        working-directory: ./application
+        working-directory: ./multi-account/application
+        env:
+          INFRASTRUCTURE_ACCOUNT_ID: ${{ secrets.INFRASTRUCTURE_ACCOUNT_ID }}
+          APPLICATION_ACCOUNT_ID: ${{ secrets.APPLICATION_ACCOUNT_ID }}
         run: npm run deploy:cicd

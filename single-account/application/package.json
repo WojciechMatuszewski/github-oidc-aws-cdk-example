@@ -1,0 +1,25 @@
+{
+  "name": "application",
+  "version": "0.1.0",
+  "bin": {
+    "application": "bin/application.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "get-bootstrap-template": "npm run cdk bootstrap -- --qualifier application --show-template > ./bootstrap-template.yaml",
+    "bootstrap": "npm run cdk bootstrap -- --qualifier application --template bootstrap-template.yaml",
+    "deploy:cicd": "npm run cdk deploy -- --require-approval never"
+  },
+  "devDependencies": {
+    "aws-cdk-lib": "2.0.0",
+    "constructs": "10.0.9",
+    "@types/node": "10.17.27",
+    "aws-cdk": "2.0.0",
+    "ts-node": "^9.0.0",
+    "typescript": "4.5.2"
+  },
+  "dependencies": {}
+}
