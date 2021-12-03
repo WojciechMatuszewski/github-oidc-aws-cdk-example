@@ -1,11 +1,11 @@
-import * as cdk from "@aws-cdk/core";
-import * as iam from "@aws-cdk/aws-iam";
+import { aws_iam, CfnOutput, Stack, StackProps } from "aws-cdk-lib";
+import { Construct } from "constructs";
 
-export class InfrastructureStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+export class InfrastructureStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const gitHubOIDCProvider = new iam.OpenIdConnectProvider(
+    const gitHubOIDCProvider = new aws_iam.OpenIdConnectProvider(
       this,
       "gitHubOIDCProvider",
       {
@@ -21,11 +21,11 @@ export class InfrastructureStack extends cdk.Stack {
     const yourGitHubRepoName = "github-oidc-aws-cdk-example";
     const yourGitHubBranchName = "main";
 
-    const applicationDeployerRole = new iam.Role(
+    const applicationDeployerRole = new aws_iam.Role(
       this,
       "applicationDeployerRole",
       {
-        assumedBy: new iam.WebIdentityPrincipal(
+        assumedBy: new aws_iam.WebIdentityPrincipal(
           gitHubOIDCProvider.openIdConnectProviderArn,
           {
             StringLike: {
@@ -36,10 +36,10 @@ export class InfrastructureStack extends cdk.Stack {
           }
         ),
         inlinePolicies: {
-          allowAssumeOnAccountB: new iam.PolicyDocument({
+          allowAssumeOnAccountB: new aws_iam.PolicyDocument({
             statements: [
-              new iam.PolicyStatement({
-                effect: iam.Effect.ALLOW,
+              new aws_iam.PolicyStatement({
+                effect: aws_iam.Effect.ALLOW,
                 actions: ["sts:AssumeRole"],
                 resources: ["arn:aws:iam::484156073071:role/*"]
               })
@@ -49,7 +49,7 @@ export class InfrastructureStack extends cdk.Stack {
       }
     );
 
-    new cdk.CfnOutput(this, "applicationDeployerRoleArn", {
+    new CfnOutput(this, "applicationDeployerRoleArn", {
       value: applicationDeployerRole.roleArn
     });
   }
