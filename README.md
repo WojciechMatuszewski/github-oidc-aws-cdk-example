@@ -1,5 +1,5 @@
 # IAM User-free CDK deployments
 
-## Learnings
+This repo contains examples of how one might use GitHub OIDC provider to deploy their _AWS CDK_ apps.
 
-- For **cross-account actions** the **role has to have permissions to perform action on the cross-account resource**.
+[Read the blog post here](https://dev.to/aws-builders/deploying-aws-cdk-apps-using-short-lived-credentials-and-github-actions-59g6).
