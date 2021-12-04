@@ -4,7 +4,7 @@ name: deployment
 on:
   push:
     branches:
-      - main
+      - idonotexist
 
 jobs:
   deploy-multi-account:
@@ -21,7 +21,7 @@ jobs:
       - name: Assume deployer role
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::216084937001:role/InfrastructureStack-applicationDeployerRole4518AA3-1NNX60MARZ9GA
+          role-to-assume: YOUR_DEPLOYER_ROLE_ARN
           aws-region: eu-west-1
       - name: Deploy the application
         working-directory: ./multi-account/application
